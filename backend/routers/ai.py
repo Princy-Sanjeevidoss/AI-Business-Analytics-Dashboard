@@ -10,9 +10,9 @@ router = APIRouter(prefix="/ai", tags=["ai"])
 
 @router.post("/chat")
 def chat(payload: dict, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return AIService().chat(payload.get("message", ""))
+    return AIService(db=db).chat(payload.get("message", ""))
 
 
 @router.post("/business-insights")
 def business_insights(payload: dict, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return AIService().business_insights(payload.get("prompt", ""))
+    return AIService(db=db).business_insights(payload.get("prompt", ""))

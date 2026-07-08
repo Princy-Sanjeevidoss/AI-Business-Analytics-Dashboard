@@ -3,14 +3,145 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analytics - AI Dashboard</title>
+    <title>Reports & Analytics - AI Business Dashboard</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <div class="container">
-      <h1>Analytics</h1>
-      <p>Detailed business metrics and charts are available through the API.</p>
-      <a href="dashboard.html">Back to dashboard</a>
+  <body style="display: block;">
+    <div class="auth-wrapper" style="min-height: auto; padding: 40px 20px;">
+      <div class="container" style="max-width: 1000px; width: 100%;">
+        <header class="dashboard-header" style="margin-bottom: 20px;">
+          <div>
+            <h1 style="font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #fff 30%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Reports & Analytics</h1>
+            <p style="color: var(--text-muted); margin-top: 6px;">Consolidated ledger audits and staffing directory</p>
+          </div>
+          <a href="dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+        </header>
+
+        <!-- Stats row -->
+        <div class="stats-grid" id="report-summary" style="margin-bottom: 30px;">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Payroll Flow</span>
+              <span class="stat-icon">💼</span>
+            </div>
+            <div class="stat-val" id="report-payroll">$0.00</div>
+            <div class="stat-desc">Monthly payroll expenses</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Payments Logged</span>
+              <span class="stat-icon">💳</span>
+            </div>
+            <div class="stat-val" id="report-payments-count">0</div>
+            <div class="stat-desc">Transactions verified</div>
+          </div>
+        </div>
+
+        <!-- Employees List -->
+        <div class="card" style="margin-bottom: 30px; background: var(--glass-bg); border: 1px solid var(--glass-border);">
+          <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 16px;">Staffing & Personnel Directory</h3>
+          <div class="table-card">
+            <div class="table-wrapper">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                  </tr>
+                </thead>
+                <tbody id="employees-list-body">
+                  <tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">Fetching staff records...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payments audit list -->
+        <div class="card" style="background: var(--glass-bg); border: 1px solid var(--glass-border);">
+          <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 16px;">Transaction Ledger Audit</h3>
+          <div class="table-card">
+            <div class="table-wrapper">
+              <table class="modern-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer ID</th>
+                    <th>Payment Method</th>
+                    <th>Date Cleared</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="payments-list-body">
+                  <tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 20px;">Fetching payment records...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
+
+    <script src="js/api.js"></script>
+    <script>
+      // Verify login token
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = 'login.html';
+      }
+
+      async function loadReportDetails() {
+        try {
+          const employees = await request('/employees') || [];
+          const payments = await request('/payments') || [];
+          
+          // Calculate summary values
+          const totalPayroll = employees.reduce((sum, e) => sum + parseFloat(e.salary || 0), 0);
+          document.getElementById('report-payroll').textContent = `$${totalPayroll.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+          document.getElementById('report-payments-count').textContent = payments.length;
+
+          // Render Employees
+          const empBody = document.getElementById('employees-list-body');
+          if (employees.length === 0) {
+            empBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No employees registered.</td></tr>`;
+          } else {
+            empBody.innerHTML = employees.map(e => `
+              <tr>
+                <td>${e.id}</td>
+                <td><strong>${e.name}</strong></td>
+                <td>${e.role}</td>
+                <td><span class="badge badge-info">${e.department || 'General'}</span></td>
+                <td>$${parseFloat(e.salary).toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+              </tr>
+            `).join('');
+          }
+
+          // Render Payments
+          const payBody = document.getElementById('payments-list-body');
+          if (payments.length === 0) {
+            payBody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No payments cleared.</td></tr>`;
+          } else {
+            payBody.innerHTML = payments.map(p => `
+              <tr>
+                <td>${p.id}</td>
+                <td>Customer #${p.customer_id}</td>
+                <td><span class="badge badge-success">${p.payment_method}</span></td>
+                <td>${p.payment_date ? p.payment_date.substring(0, 10) : ''}</td>
+                <td><strong>$${parseFloat(p.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td>
+              </tr>
+            `).join('');
+          }
+
+        } catch (e) {
+          console.error("Report loading failure:", e);
+        }
+      }
+
+      loadReportDetails();
+    </script>
   </body>
 </html>

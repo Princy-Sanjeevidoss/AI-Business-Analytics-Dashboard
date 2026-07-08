@@ -3,26 +3,232 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - AI Analytics</title>
+    <title>Dashboard - AI Business Analytics</title>
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Business Analytics Dashboard</h1>
-        <button onclick="logout()">Logout</button>
-      </header>
-      <div class="stats-grid" id="summary-cards"></div>
-      <div class="charts-grid">
-        <div class="card chart-card"><canvas id="revenue-chart"></canvas></div>
-        <div class="card chart-card"><canvas id="products-chart"></canvas></div>
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-icon">📈</div>
+          <div class="brand-name">BizAnalytics</div>
+        </div>
+        
+        <nav class="nav-menu">
+          <li class="nav-item active" onclick="switchTab('overview')">
+            <span class="nav-icon">📊</span> Overview
+          </li>
+          <li class="nav-item" onclick="switchTab('data-manager')">
+            <span class="nav-icon">📁</span> Data Manager
+          </li>
+          <li class="nav-item" onclick="switchTab('prediction')">
+            <span class="nav-icon">🔮</span> ML Forecasting
+          </li>
+        </nav>
+        
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar" id="user-avatar-initial">A</div>
+            <div>
+              <div style="font-weight: 600;" id="user-display-name">Admin User</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Administrator</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="logout()" style="width: 100%;">Sign Out</button>
+        </div>
+      </aside>
+
+      <!-- Main Dashboard Panel -->
+      <main class="main-panel">
+        <header class="dashboard-header">
+          <div class="header-title">
+            <h2 id="panel-title-text">Business Dashboard</h2>
+            <p id="panel-subtitle-text">Real-time metrics and system indicators</p>
+          </div>
+        </header>
+
+        <!-- TAB: Overview -->
+        <section id="tab-overview" class="tab-content active">
+          <!-- Stats Cards -->
+          <div class="stats-grid" id="summary-cards">
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-title">Total Revenue</span>
+                <span class="stat-icon">💰</span>
+              </div>
+              <div class="stat-val" id="card-revenue">$0.00</div>
+              <div class="stat-desc">Accumulated sales volume</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-title">Customers</span>
+                <span class="stat-icon">👥</span>
+              </div>
+              <div class="stat-val" id="card-customers">0</div>
+              <div class="stat-desc">Registered clients in database</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-title">Sales Count</span>
+                <span class="stat-icon">🛍️</span>
+              </div>
+              <div class="stat-val" id="card-sales">0</div>
+              <div class="stat-desc">Completed transactions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-title">Employees</span>
+                <span class="stat-icon">💼</span>
+              </div>
+              <div class="stat-val" id="card-employees">0</div>
+              <div class="stat-desc">Staff size count</div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>Monthly Sales Revenue Trend</h3>
+              <div class="chart-container">
+                <canvas id="revenue-chart"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <h3>Top Selling Products</h3>
+              <div class="chart-container">
+                <canvas id="products-chart"></canvas>
+              </div>
+            </div>
+            <div class="chart-card" style="grid-column: span 2;">
+              <h3>Payment Method Distribution</h3>
+              <div class="chart-container" style="height: 250px;">
+                <canvas id="payments-chart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Recent Insights & Forecast Summary -->
+          <div class="dashboard-row">
+            <div class="insights-card">
+              <h3>Automated System Insights</h3>
+              <ul class="insights-list" id="insights-list">
+                <li>System starting up... retrieving analytics.</li>
+              </ul>
+            </div>
+            
+            <div class="mini-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3>Forecasting Projection</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">ML predicted revenue for next month</p>
+                <div class="forecast-value" id="quick-forecast-val" style="font-size: 2.2rem; margin: 5px 0;">$0.00</div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="switchTab('prediction')" style="width: 100%;">View Model Details</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB: Data Manager -->
+        <section id="tab-data-manager" class="tab-content">
+          <div class="data-manager-header">
+            <div class="crud-selector">
+              <div class="crud-tab active" id="crud-tab-sales" onclick="switchCrudTab('sales')">Sales</div>
+              <div class="crud-tab" id="crud-tab-products" onclick="switchCrudTab('products')">Products</div>
+              <div class="crud-tab" id="crud-tab-customers" onclick="switchCrudTab('customers')">Customers</div>
+              <div class="crud-tab" id="crud-tab-employees" onclick="switchCrudTab('employees')">Employees</div>
+              <div class="crud-tab" id="crud-tab-payments" onclick="switchCrudTab('payments')">Payments</div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <input type="text" id="crud-search" placeholder="Search database..." oninput="handleSearch(this.value)" style="width: 200px; padding: 8px 12px; font-size: 0.85rem;" />
+              <button class="btn btn-primary btn-sm" onclick="openCrudModal('add')">+ Add Record</button>
+            </div>
+          </div>
+
+          <!-- Table Container -->
+          <div class="table-card">
+            <div class="table-wrapper">
+              <table class="modern-table">
+                <thead id="crud-table-head">
+                  <!-- Header will be dynamically populated -->
+                </thead>
+                <tbody id="crud-table-body">
+                  <!-- Body will be dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB: ML Forecasting -->
+        <section id="tab-prediction" class="tab-content">
+          <div class="forecast-card">
+            <h3>Machine Learning Sales Projection</h3>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">
+              Our linear regression model maps customer purchasing histories, inventory profiles, and order quantities to predict future returns.
+            </p>
+            <div class="forecast-value" id="prediction-value">$0.00</div>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Predicted next month revenue</p>
+          </div>
+
+          <div class="ml-training-panel">
+            <div style="text-align: left;">
+              <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 4px;">Forecasting Model Training</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;" id="training-status">Model is trained and operating on active records.</p>
+            </div>
+            <button class="btn btn-primary" onclick="trainMLModel()" id="btn-train-model">Re-Train Model</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- AI Chatbot Overlay Widget -->
+    <div class="chat-trigger" onclick="toggleChat()">
+      <span class="chat-trigger-icon">💬</span>
+    </div>
+
+    <div class="chat-widget" id="chat-widget">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <h4>Analytics Assistant</h4>
+          <span>Active Data Companion</span>
+        </div>
+        <button class="modal-close" onclick="toggleChat()" style="color: white; font-size: 1.2rem;">✕</button>
       </div>
-      <div class="card">
-        <h2>Recent Insights</h2>
-        <ul id="insights-list"></ul>
+      <div class="chat-history" id="chat-history">
+        <div class="chat-bubble chat-bubble-assistant">
+          👋 Hello! I am your AI Business Assistant. Ask me questions about your revenue, sales, customers, products, employees, or future forecasts.
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about sales, payroll..." onkeydown="handleChatKeyDown(event)" />
+        <button class="btn btn-primary btn-sm" onclick="sendChatMessage()">Send</button>
       </div>
     </div>
+
+    <!-- Universal CRUD Form Modal -->
+    <div class="modal-overlay" id="crud-modal-overlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modal-title">Add Record</h3>
+          <button class="modal-close" onclick="closeCrudModal()">✕</button>
+        </div>
+        <div id="modal-error" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid var(--danger); color: var(--danger); padding: 8px; border-radius: var(--border-radius-sm); margin-bottom: 15px; font-size: 0.85rem;"></div>
+        
+        <form id="crud-form" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" id="form-record-id" />
+          <div id="modal-form-content">
+            <!-- Dynamic fields go here -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="closeCrudModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="modal-submit-btn">Save Record</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script src="js/api.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
