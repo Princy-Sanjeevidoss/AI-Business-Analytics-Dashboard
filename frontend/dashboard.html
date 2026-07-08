@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - AI Analytics</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Business Analytics Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+      </header>
+      <div class="stats-grid" id="summary-cards"></div>
+      <div class="charts-grid">
+        <div class="card chart-card"><canvas id="revenue-chart"></canvas></div>
+        <div class="card chart-card"><canvas id="products-chart"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Recent Insights</h2>
+        <ul id="insights-list"></ul>
+      </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
