@@ -15,12 +15,18 @@ def list_payments(db: Session = Depends(get_db), current_user: dict = Depends(ge
 
 @router.post("", response_model=schemas.PaymentRead, status_code=status.HTTP_201_CREATED)
 def create_payment(payment: schemas.PaymentCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return crud.create_payment(db, payment)
+    try:
+        return crud.create_payment(db, payment)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.put("/{payment_id}", response_model=schemas.PaymentRead)
 def update_payment(payment_id: int, payment: schemas.PaymentCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    updated = crud.update_payment(db, payment_id, payment)
+    try:
+        updated = crud.update_payment(db, payment_id, payment)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     if not updated:
         raise HTTPException(status_code=404, detail="Payment not found")
     return updated

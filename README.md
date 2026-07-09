@@ -1,102 +1,166 @@
 # AI-Powered Business Analytics Dashboard
 
-An advanced, premium-designed operations and analytics dashboard featuring real-time data visualization, a machine learning forecasting engine, an interactive database-aware AI Chatbot, and a complete CRUD management suite.
+A complete business analytics platform combining an interactive FastAPI backend, a polished glassmorphic frontend, machine learning forecasting, database-driven AI insights, and full CRUD management for customers, products, sales, employees, and payments.
 
 ---
 
-## 🚀 Key Features
+## 🚀 What this project delivers
 
-*   **Premium Glassmorphic Dark UI**: A sleek, high-tech interface styled with a custom dark theme, vibrant gradients, subtle micro-animations, and fully responsive layouts.
-*   **Dynamic Data Visualizations**: Real-time sales trends, product margins, and payment method statistics powered by **Chart.js**.
-*   **Database-Aware AI Assistant**: An interactive chat window that queries live SQL tables directly to answer natural language questions (e.g., "What is our total revenue?"), falling back seamlessly when no external API keys are configured.
-*   **ML Revenue Forecasting**: Integrated linear regression models to predict next-month metrics on demand.
-*   **Unified Data Manager (CRUD)**: Create, read, update, and delete entries for Sales, Products, Customers, Employees, and Payments with automatic layout resets and selection lookups.
-*   **Demo Authentication**: Quick-login support with pre-filled test credentials for seamless evaluations.
-
----
-
-## 🛠️ Technology Stack
-
-*   **Backend**: Python, FastAPI, SQLAlchemy, Pydantic, JWT Auth, Uvicorn.
-*   **Frontend**: Vanilla HTML5, Vanilla CSS3 (Glassmorphism, custom layout grids), JavaScript (ES6 Fetch API, LocalStorage).
-*   **Machine Learning & Analytics**: Pandas, NumPy, Scikit-Learn, Joblib.
-*   **Database**: SQLite.
+*   **Analytics dashboard** with sales trends, profit margins, payment breakdowns, and KPI summaries.
+*   **AI assistant** that can answer natural language questions using live SQL-backed data.
+*   **ML forecasting** using saved regression models for revenue and sales predictions.
+*   **CRUD management** for Customers, Products, Sales, Employees, and Payments.
+*   **Responsive modern UI** with dark glassmorphic styling and client-side dashboard controls.
+*   **Convenient startup scripts** for Windows PowerShell and batch execution.
 
 ---
 
-## 📂 Project Structure
+## 🧰 Technology Stack
+
+*   **Backend**: Python, FastAPI, SQLAlchemy, Pydantic, Uvicorn
+*   **Frontend**: HTML, CSS, JavaScript
+*   **Machine learning**: scikit-learn, pandas, numpy, joblib
+*   **Database**: SQLite
+
+---
+
+## 📁 Repository Structure
 
 ```
 ├── backend/
-│   ├── models.py          # SQLAlchemy Database Models
-│   ├── schemas.py         # Pydantic Schemas for Validation
-│   ├── crud.py            # Database CRUD Operations
-│   ├── main.py            # FastAPI Entry Point & CORS Setup
-│   ├── config.py          # Environment configurations
-│   ├── database.py        # SQLite Engine & Session Configuration
-│   ├── services/
-│   │   ├── ai_service.py  # AI Query Fallback Service
-│   │   └── ...            # Analytics & Prediction Services
-│   └── routers/           # Endpoint Route Controllers
-├── database/
-│   └── business.db        # SQLite Database File
+│   ├── models.py           # Database models
+│   ├── schemas.py          # Request/response schemas
+│   ├── crud.py             # CRUD helper functions
+│   ├── main.py             # FastAPI app entrypoint
+│   ├── database.py         # SQLite engine and session setup
+│   ├── dependencies.py     # API dependency helpers
+│   ├── config.py           # app configuration
+│   ├── routes.py           # root routes and router imports
+│   ├── security.py         # auth utilities and password hashing
+│   ├── seed.py             # database seeding logic
+│   ├── visualization.py    # chart / analytics helpers
+│   ├── data_analysis.py    # analysis helper functions
+│   ├── ml/                 # prediction and analytics routers
+│   │   ├── routers/
+│   │   └── services/
 ├── frontend/
 │   ├── css/
-│   │   └── style.css      # Premium Glassmorphic Stylesheet
+│   │   └── style.css       # application styling
 │   ├── js/
-│   │   ├── api.js         # API request utilities
-│   │   └── dashboard.js   # Dashboard UI Controller
-│   ├── login.html         # Portal Authentication
-│   └── dashboard.html     # Analytics Portal Workspace
-└── requirements.txt       # Python dependencies list
+│   │   ├── api.js          # client API utilities
+│   │   └── dashboard.js    # dashboard UI logic
+│   ├── login.html          # login portal
+│   ├── dashboard.html      # analytics and management interface
+│   └── analytics.html      # analytics-specific page
+├── database/
+│   └── schema.sql          # database schema definition
+├── data/                   # sample CSV datasets
+├── ml/                     # modeling notebooks and scripts
+│   ├── customer_segmentation.py
+│   ├── sales_prediction.py
+│   └── models/
+├── sample_uploads/         # sample upload templates
+├── requirements.txt        # Python dependencies
+├── start_dashboard.ps1     # PowerShell launcher
+├── start_dashboard.bat     # Windows batch launcher
+└── start_public_link.ps1   # start server and expose public URL
 ```
 
 ---
 
-## ⚙️ Installation & Local Setup
+## ⚙️ Setup & Run
 
-### 1. Clone the repository
+### Prerequisites
+
+*   Python 3.11+ (or compatible 3.x install)
+*   Git
+*   `pip` available in the environment
+
+### 1. Clone the repo
+
 ```bash
 git clone https://github.com/Princy-Sanjeevidoss/AI-Business-Analytics-Dashboard.git
 cd AI-Business-Analytics-Dashboard
 ```
 
-### 2. Configure Environment Variables
-Create a `.env` file in the root folder or copy the template:
+### 2. Create and activate a virtual environment
+
 ```bash
-cp .env.example .env
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-### 3. Backend Setup
-Create a virtual environment and install dependencies:
+### 3. Install dependencies
+
 ```bash
-# Create environment
-python -m venv .venv
-
-# Activate environment (Windows)
-.venv\Scripts\activate
-
-# Activate environment (Mac/Linux)
-source .venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-Run the backend server:
+### 4. Start the app
+
+Use the provided PowerShell script:
+
+```powershell
+.
+"start_dashboard.ps1"
+```
+
+Or run Uvicorn directly:
+
 ```bash
 python -m uvicorn backend.main:app --host 127.0.0.1 --port 8002 --reload
 ```
-*The API server will run at `http://127.0.0.1:8002`.*
 
-### 4. Frontend Launch
-You don't need a build system for the frontend. Simply open the login page directly in any modern browser:
-*   Double click `frontend/login.html` or open it via file browser.
+### 5. Open the app
+
+Visit:
+
+```text
+http://127.0.0.1:8002/app/login.html
+```
+
+Or use the backend redirect route:
+
+```text
+http://127.0.0.1:8002/login
+```
+
+---
+
+## 🔧 Notes
+
+*   The backend mounts the `frontend/` folder at `/app` and serves HTML/CSS/JS statically.
+*   On startup, the app creates database tables and seeds initial data via `backend.seed.seed_data()`.
+*   `sample_uploads/` includes CSV templates for customers, employees, payments, products, and sales.
+*   `backend/routers/` exposes routes for auth, AI, analytics, import, prediction, and CRUD operations.
 
 ---
 
 ## 🔑 Demo Credentials
 
-Click the **Demo Admin** button on the login screen to autofill, or input:
+Use the demo login button on the frontend or enter:
+
 *   **Username**: `admin`
 *   **Password**: `admin123`
+
+---
+
+## 📌 Helpful Commands
+
+```bash
+# Run backend server manually
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8002 --reload
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Activate virtual environment
+.venv\Scripts\activate
+```
+
+---
+
+## 💡 Helpful Tips
+
+*   If the browser does not load the page, verify the backend is running and that port `8002` is available.
+*   Use the `start_public_link.ps1` script to expose the app publicly when needed.

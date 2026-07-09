@@ -1,0 +1,4 @@
+customer_id,amount,payment_method,payment_date
+1,2599.98,Card,2026-07-05
+2,149.95,UPI,2026-07-06
+3,189.50,Bank Transfer,2026-07-07

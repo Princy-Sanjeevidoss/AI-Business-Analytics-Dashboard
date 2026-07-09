@@ -257,9 +257,17 @@ async function switchCrudTab(crudTab) {
     tab.classList.remove('active');
   });
   document.getElementById(`crud-tab-${crudTab}`).classList.add('active');
+  updateImportLabel();
   
   document.getElementById('crud-search').value = '';
   await loadCrudData(crudTab);
+}
+
+function updateImportLabel() {
+  const label = document.getElementById('import-entity-label');
+  if (label) {
+    label.textContent = capitalize(currentCrudTab);
+  }
 }
 
 // Fetch lists from backend
@@ -390,6 +398,46 @@ function handleSearch(query) {
     );
   });
   renderCrudTable();
+}
+
+function openDataUpload() {
+  document.getElementById('data-upload-input').click();
+}
+
+function showUploadStatus(message, type = '') {
+  const statusEl = document.getElementById('upload-status');
+  if (!statusEl) return;
+
+  statusEl.textContent = message;
+  statusEl.className = `upload-status active ${type}`.trim();
+}
+
+async function handleDataUpload(event) {
+  const fileInput = event.target;
+  const file = fileInput.files && fileInput.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  showUploadStatus(`Importing ${file.name} into ${capitalize(currentCrudTab)}...`);
+
+  try {
+    const result = await request(`/import/${currentCrudTab}`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const skippedText = result.skipped ? ` ${result.skipped} row(s) skipped.` : '';
+    showUploadStatus(`Imported ${result.imported} row(s) into ${capitalize(currentCrudTab)}.${skippedText}`, result.skipped ? 'error' : 'success');
+    await loadDropdownData();
+    await loadCrudData(currentCrudTab);
+    if (currentTab === 'overview') await loadDashboard();
+  } catch (error) {
+    showUploadStatus(`Upload failed: ${error.message}`, 'error');
+  } finally {
+    fileInput.value = '';
+  }
 }
 
 // 5. CRUD Modals Operations
@@ -780,4 +828,5 @@ function formatMarkdown(text) {
 }
 
 // Run initial configurations
+updateImportLabel();
 init();

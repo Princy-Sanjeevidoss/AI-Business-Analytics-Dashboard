@@ -15,12 +15,18 @@ def list_sales(db: Session = Depends(get_db), current_user: dict = Depends(get_c
 
 @router.post("", response_model=schemas.SaleRead, status_code=status.HTTP_201_CREATED)
 def create_sale(sale: schemas.SaleCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return crud.create_sale(db, sale)
+    try:
+        return crud.create_sale(db, sale)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.put("/{sale_id}", response_model=schemas.SaleRead)
 def update_sale(sale_id: int, sale: schemas.SaleCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    updated = crud.update_sale(db, sale_id, sale)
+    try:
+        updated = crud.update_sale(db, sale_id, sale)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     if not updated:
         raise HTTPException(status_code=404, detail="Sale not found")
     return updated

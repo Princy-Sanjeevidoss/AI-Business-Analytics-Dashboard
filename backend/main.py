@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.database import Base, engine
 from backend.models import Customer, Employee, Payment, Product, Sale, User  # noqa: F401
-from backend.routers import ai, analytics, auth, customers, employees, payments, prediction, products, sales
+from backend.routers import ai, analytics, auth, customers, employees, import_data, payments, prediction, products, sales
 from backend.seed import seed_data
 
 Base.metadata.create_all(bind=engine)
@@ -28,6 +28,7 @@ app.include_router(products.router)
 app.include_router(sales.router)
 app.include_router(employees.router)
 app.include_router(payments.router)
+app.include_router(import_data.router)
 app.include_router(analytics.router)
 app.include_router(prediction.router)
 app.include_router(ai.router)

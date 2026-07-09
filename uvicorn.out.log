@@ -1,0 +1,116 @@
+INFO:     127.0.0.1:2389 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:30675 - "GET /app/css/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:25534 - "GET /app/js/api.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:25534 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39346 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /app/dashboard.html HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:39346 - "GET /app/js/dashboard.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:39346 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /employees HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39346 - "GET /payments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62302 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62302 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62302 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62602 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62604 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62604 - "POST /customers HTTP/1.1" 201 Created
+INFO:     127.0.0.1:62604 - "POST /customers HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:62607 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62607 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62607 - "DELETE /customers/8 HTTP/1.1" 204 No Content
+INFO:     127.0.0.1:28178 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44929 - "GET /app/css/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60861 - "GET /app/js/api.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:60861 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:17479 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /app/dashboard.html HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:17479 - "GET /app/js/dashboard.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:17479 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:17479 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8855 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8855 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8855 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8855 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:8855 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34440 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34442 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26076 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /app/login.html HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /app/js/api.js HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /health HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /app/js/api.js HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "GET /app/login.html HTTP/1.1" 200 OK
+INFO:     2401:4900:8827:96df:9cca:4b6:b3e3:ddec:0 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40423 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:25755 - "GET /app/css/style.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:26578 - "GET /app/js/api.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /app/dashboard.html HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:26578 - "GET /app/js/dashboard.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:26578 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:26578 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:7690 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /app/dashboard.html HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:18709 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /customers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:18709 - "GET /products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43648 - "GET /sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33455 - "GET /analytics/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33455 - "GET /analytics/monthly-sales HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33455 - "GET /analytics/top-products HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33455 - "GET /analytics/payment-methods HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33455 - "GET /prediction/next-month-revenue HTTP/1.1" 200 OK

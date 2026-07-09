@@ -15,12 +15,18 @@ def list_employees(db: Session = Depends(get_db), current_user: dict = Depends(g
 
 @router.post("", response_model=schemas.EmployeeRead, status_code=status.HTTP_201_CREATED)
 def create_employee(employee: schemas.EmployeeCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return crud.create_employee(db, employee)
+    try:
+        return crud.create_employee(db, employee)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.put("/{employee_id}", response_model=schemas.EmployeeRead)
 def update_employee(employee_id: int, employee: schemas.EmployeeCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    updated = crud.update_employee(db, employee_id, employee)
+    try:
+        updated = crud.update_employee(db, employee_id, employee)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     if not updated:
         raise HTTPException(status_code=404, detail="Employee not found")
     return updated

@@ -146,6 +146,19 @@
             </div>
           </div>
 
+          <div class="import-panel">
+            <div class="import-panel-copy">
+              <h3>Import <span id="import-entity-label">Sales</span></h3>
+              <p>Upload a CSV, XLSX, or XLS file for the selected table.</p>
+            </div>
+            <div class="import-actions">
+              <input type="file" id="data-upload-input" accept=".csv,.xlsx,.xls" onchange="handleDataUpload(event)" hidden />
+              <button class="btn btn-secondary" onclick="openDataUpload()">Choose CSV/Excel</button>
+            </div>
+          </div>
+
+          <div class="upload-status" id="upload-status" aria-live="polite"></div>
+
           <!-- Table Container -->
           <div class="table-card">
             <div class="table-wrapper">

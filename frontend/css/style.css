@@ -553,6 +553,60 @@ header.dashboard-header {
   background: rgba(255, 255, 255, 0.05);
 }
 
+.import-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.import-panel-copy h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.import-panel-copy p {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+
+.import-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.upload-status {
+  display: none;
+  margin: -8px 0 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  background: rgba(15, 23, 42, 0.45);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.upload-status.active {
+  display: block;
+}
+
+.upload-status.success {
+  border-color: rgba(16, 185, 129, 0.45);
+  color: var(--success);
+}
+
+.upload-status.error {
+  border-color: rgba(239, 68, 68, 0.45);
+  color: var(--danger);
+}
+
 /* Tables styling */
 .table-card {
   background: var(--glass-bg);
@@ -897,6 +951,14 @@ header.dashboard-header {
   .main-panel {
     max-width: 100%;
     padding: 20px;
+  }
+  .import-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .import-actions,
+  .import-actions .btn {
+    width: 100%;
   }
   .chat-widget {
     width: calc(100vw - 40px);

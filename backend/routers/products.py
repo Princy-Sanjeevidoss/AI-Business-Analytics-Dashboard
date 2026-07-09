@@ -15,12 +15,18 @@ def list_products(db: Session = Depends(get_db), current_user: dict = Depends(ge
 
 @router.post("", response_model=schemas.ProductRead, status_code=status.HTTP_201_CREATED)
 def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    return crud.create_product(db, product)
+    try:
+        return crud.create_product(db, product)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.put("/{product_id}", response_model=schemas.ProductRead)
 def update_product(product_id: int, product: schemas.ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
-    updated = crud.update_product(db, product_id, product)
+    try:
+        updated = crud.update_product(db, product_id, product)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     if not updated:
         raise HTTPException(status_code=404, detail="Product not found")
     return updated
