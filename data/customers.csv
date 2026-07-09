@@ -1,0 +1,6 @@
+customer_id,name,email,phone,city,join_date
+1,Princy,princy@gmail.com,9876543210,Salem,2025-01-15
+2,Ravi,ravi@gmail.com,9876543211,Chennai,2025-02-20
+3,Priya,priya@gmail.com,9876543212,Coimbatore,2025-03-05
+4,Arun,arun@gmail.com,9876543213,Madurai,2025-04-12
+5,Divya,divya@gmail.com,9876543214,Erode,2025-05-18

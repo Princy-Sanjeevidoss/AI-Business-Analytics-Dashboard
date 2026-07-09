@@ -127,6 +127,30 @@ http://127.0.0.1:8002/login
 
 ---
 
+## 🌐 Share the app externally
+
+If you want others to access the running app from outside your local machine, use the included public tunnel launcher.
+
+1. Start the app locally with the PowerShell launcher:
+
+```powershell
+.
+"start_dashboard.ps1"
+```
+
+2. Then launch the public access tunnel:
+
+```powershell
+.
+"start_public_link.ps1"
+```
+
+3. Copy the generated `trycloudflare.com` URL and share it.
+
+> Keep the computer, backend server, and tunnel process running while sharing the link.
+
+---
+
 ## 🔧 Notes
 
 *   The backend mounts the `frontend/` folder at `/app` and serves HTML/CSS/JS statically.

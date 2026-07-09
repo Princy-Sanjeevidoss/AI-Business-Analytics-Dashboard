@@ -14,3 +14,34 @@ print(products.head())
 
 print("\nSales")
 print(sales.head())
+
+# -------------------------------
+# Explore the customers dataset
+# -------------------------------
+
+print("\nLast 5 Customers")
+print(customers.tail())
+
+print("\nShape of Customers Dataset")
+print(customers.shape)
+
+print("\nCustomer Columns")
+print(customers.columns)
+
+print("\nCustomer Dataset Information")
+customers.info()
+
+print("\nCustomer Statistics")
+print(customers.describe())
+
+
+
+print("\n---------------------------")
+print("Missing Values")
+print("---------------------------")
+print(customers.isnull().sum())
+
+print("\n---------------------------")
+print("Duplicate Rows")
+print("---------------------------")
+print(customers.duplicated().sum())

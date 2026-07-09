@@ -64,8 +64,11 @@ Write-Host "Creating public link..."
 for ($i = 0; $i -lt 30; $i++) {
     Start-Sleep -Seconds 1
     $logText = ""
+    if (Test-Path $outLog) {
+        $logText += Get-Content $outLog -Raw
+    }
     if (Test-Path $errLog) {
-        $logText = Get-Content $errLog -Raw
+        $logText += "`n" + (Get-Content $errLog -Raw)
     }
 
     $match = [regex]::Match($logText, "https://[a-z0-9-]+\.trycloudflare\.com")
@@ -80,4 +83,5 @@ for ($i = 0; $i -lt 30; $i++) {
 }
 
 Write-Host "Tunnel started, but no URL was found yet. Check:"
+Write-Host $outLog
 Write-Host $errLog

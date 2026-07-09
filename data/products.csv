@@ -1,0 +1,6 @@
+product_id,product_name,category,price,stock
+101,Laptop,Electronics,65000,20
+102,Smartphone,Electronics,25000,35
+103,Headphones,Accessories,2000,100
+104,Office Chair,Furniture,7000,15
+105,Water Bottle,Home,500,150
